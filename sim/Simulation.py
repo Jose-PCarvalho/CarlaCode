@@ -36,7 +36,8 @@ class Simulation(object):
 
         self.client = carla.Client(args.host, args.port)
         self.client.set_timeout(args.timeout)
-        self.client.load_world(args.map)
+        if args.map not in self.client.get_world().get_map().name:
+            self.client.load_world(args.map)
         self.traffic_manager = self.client.get_trafficmanager()
         self.sim_world = self.client.get_world()
 
@@ -74,7 +75,7 @@ class Simulation(object):
         else:
             self.world.world.wait_for_tick()
         if self.controller.parse_events():
-            return
+            return True
         self.world.tick(self.clock)
         self.world.render(self.display)
         pygame.display.flip()
@@ -94,7 +95,5 @@ class Simulation(object):
             settings.fixed_delta_seconds = None
             self.world.world.apply_settings(settings)
             self.traffic_manager.set_synchronous_mode(True)
-
             self.world.destroy()
-
         pygame.quit()

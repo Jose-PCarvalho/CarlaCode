@@ -35,6 +35,7 @@ def main(cfg: DictConfig):
     logging.info('Listening to server %s:%s', cfg.host, cfg.port)
 
     # Simulation
+
     sim = Simulation()
     sim.init(cfg)  # assumes Simulation accepts a DictConfig or object with .field access
 
