@@ -1,0 +1,22 @@
+debug: false
+host: "127.0.0.1"
+port: 2000
+timeout: 60
+res: "1280x720"
+width: ???
+height: ???
+
+# Simulation mode
+sync: true
+fixed_step: 0.01
+filter: "vehicle.audi.etron"
+generation: "1"
+loop: false
+seed: null
+
+# Agent
+agent: "Behavior"         # options: Behavior, Basic, Constant
+behavior: "normal"        # only applies if agent == "Behavior"
+
+#Map
+map: "Town06"
